@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -8,10 +8,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProductCategoryComponent implements OnInit {
   categories = [{_id: 1, name: 'vegetables'}, {_id: 2, name: 'bread'}];
-  @Input('currentCategoryId') currentCategoryId;
+  @Input('currentCategory') currentCategory;
+  @Output() onCategoryChange: EventEmitter<any> = new EventEmitter();
 
   constructor(private activatedRoute: ActivatedRoute) {
-    console.log(this.currentCategoryId);
     this.setCurrentCategory();
   }
 
@@ -20,12 +20,24 @@ export class ProductCategoryComponent implements OnInit {
 
   setCurrentCategory() {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.currentCategoryId = params['categoryId'];
+      let categoryId = params['categoryId'];
+
+      const filteredCategory = this.categories.filter(category => category._id == categoryId)
+
+      if(filteredCategory.length === 1) {
+        this.currentCategory = filteredCategory[0];
+      } else {
+        this.currentCategory = null;
+      }
+
+      this.onCategoryChange.emit(this.currentCategory);
     });
   }
 
-  onChangeCategory() {
+  onChangeCategory(category) {
     this.setCurrentCategory();
   }
+
+
 
 }

@@ -58,10 +58,29 @@ export class ProductsComponent implements OnInit {
     },
   ];
 
+  filteredProducts = this.products;
+
+  category;
+
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  private applyFilter() {
+    this.filteredProducts = (this.category) ?
+      this.products.filter(product => product.category === this.category.name) :
+      this.products;
+
+    console.log(this.filteredProducts);
+    console.log(this.category);
+  }
+
+  private onCategoryChange(category) {
+    this.category = category;
+
+    this.applyFilter();
   }
 
 }

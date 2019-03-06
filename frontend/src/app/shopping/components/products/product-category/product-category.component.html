@@ -2,7 +2,7 @@
   <div class="list-group">
     <a
       class="list-group-item list-group-item-action"
-      [class.active]="!currentCategoryId"
+      [class.active]="!currentCategory"
       routerLink="/"
     >All Categories</a>
     <a
@@ -10,8 +10,8 @@
       routerLink="/"
       [queryParams]="{ categoryId: category._id }"
       class="list-group-item list-group-item-action"
-      [class.active]="currentCategoryId && category._id == currentCategoryId"
-      (click)="onChangeCategory()">
+      [class.active]="currentCategory && category._id == currentCategory._id"
+      (click)="onChangeCategory(category)">
       {{ category.name }}
     </a>
   </div>
