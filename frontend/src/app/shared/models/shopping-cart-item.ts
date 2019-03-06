@@ -9,6 +9,4 @@ export class ShoppingCartItem {
     this.quantity = 0;
     Object.assign(this, init);
   }
-
-  get totalPrice() { return this.price * this.quantity; }
 }

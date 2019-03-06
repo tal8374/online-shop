@@ -11,7 +11,9 @@ export class ProductQuantityComponent  {
   @Input('product') product: Product;
   @Input('shopping-cart') shoppingCart;
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private cartService: ShoppingCartService) {
+    this.shoppingCart = cartService.getCart();
+  }
 
   addToCart() {
     this.cartService.addToCart(this.product);
@@ -19,6 +21,10 @@ export class ProductQuantityComponent  {
 
   removeFromCart() {
     this.cartService.removeFromCart(this.product);
+  }
+
+  getNumberOfTheItem() {
+    return this.shoppingCart.getQuantity(this.product);
   }
 
 }

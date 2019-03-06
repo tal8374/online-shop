@@ -22,6 +22,6 @@ export class ProductCardComponent {
   }
 
   isProductInCart(): boolean {
-    return this.shoppingCart.getQuantity(this.product) === 0
+    return this.shoppingCart.getQuantity(this.product) === 0;
   }
 }

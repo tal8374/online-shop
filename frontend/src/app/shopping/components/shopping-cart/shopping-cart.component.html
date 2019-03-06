@@ -1,0 +1,53 @@
+<h1 style="text-align: center">Shopping Cart</h1>
+<div class="card">
+  <div class="card-body">
+    <p style="text-align: center">
+      You have {{ getNumberOfItemsInCart() }} items in your shopping cart.
+      <button *ngIf="getNumberOfItemsInCart()" (click)="clearCart()" class="float-right btn btn-light btn-sm">Clear
+        Shopping
+        Cart
+      </button>
+    </p>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Product</th>
+      <th class="text-center" style="width: 230px">Quantity</th>
+      <th class="text-right" style="width: 200px">Total Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items">
+      <td>
+        <div [style.backgroundImage]="'url(' + item.image + ')'" class="thumbnail">
+        </div>
+      </td>
+      <td>
+        {{ item.title }}
+      </td>
+      <td>
+        <product-quantity [product]="item">
+        </product-quantity>
+      </td>
+      <td class="text-right">
+        {{ getTotalPriceOfItem(item) | currency:'USD':true }}
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th class="text-right">{{ getTotalPrice() | currency:'USD':true }}</th>
+    </tr>
+    <tr>
+      <th class="text-center" colspan="4">
+        <a *ngIf="getNumberOfItemsInCart()" routerLink="/check-out" class="btn btn-secondary">Check Out</a>
+      </th>
+    </tr>
+    </tfoot>
+  </table>
+</div>

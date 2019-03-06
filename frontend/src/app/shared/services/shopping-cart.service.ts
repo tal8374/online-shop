@@ -40,4 +40,8 @@ export class ShoppingCartService {
     return this.shoppingCart.totalPrice;
   }
 
+  getTotalPriceOfItem(product: Product): number {
+    return this.shoppingCart.getTotalPriceOfItem(product);
+  }
+
 }

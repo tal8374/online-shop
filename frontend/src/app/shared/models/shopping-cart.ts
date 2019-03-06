@@ -5,6 +5,12 @@ export class ShoppingCart {
   shoppingCart: { [_id: string]: ShoppingCartItem } = {};
 
   constructor(private products: Array<Product> = []) {
+    const shoppingCart = localStorage.getItem('shoppingCart');
+
+    if (shoppingCart) {
+      this.shoppingCart = JSON.parse(shoppingCart);
+    }
+
     for (let product of products) {
       this.shoppingCart[product._id] = new ShoppingCartItem(product);
     }
@@ -18,8 +24,10 @@ export class ShoppingCart {
   get totalPrice() {
     let sum = 0;
     for (let productId in this.shoppingCart) {
-      sum += this.shoppingCart[productId].totalPrice;
+      const item = this.shoppingCart[productId];
+      sum += item.quantity * item.price;
     }
+
     return sum;
   }
 
@@ -43,15 +51,29 @@ export class ShoppingCart {
     return this.shoppingCart[productId];
   }
 
+  getShoppingCartItems(): { [_id: string]: ShoppingCartItem } {
+    return this.shoppingCart;
+  }
+
   updateShoppingCartItem(product: Product, quantity: number) {
-    if(!this.shoppingCart[product._id]) {
+    if (!this.shoppingCart[product._id]) {
       this.shoppingCart[product._id] = new ShoppingCartItem(product);
     }
 
     this.shoppingCart[product._id].quantity += quantity;
+
+    localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
   }
 
   clearCart() {
     this.shoppingCart = {};
+
+    localStorage.setItem('shoppingCart', JSON.stringify(this.shoppingCart));
+  }
+
+  getTotalPriceOfItem(product: Product): number {
+    const shoppingCartItem: ShoppingCartItem = this.shoppingCart[product._id];
+
+    return shoppingCartItem.quantity * shoppingCartItem.price;
   }
 }
