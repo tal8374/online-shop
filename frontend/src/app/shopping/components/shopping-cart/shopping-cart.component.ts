@@ -1,5 +1,5 @@
-import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
-import { Component, OnInit } from '@angular/core';
+import {ShoppingCartService} from '../../../shared/services/shopping-cart.service';
+import {Component, OnInit} from '@angular/core';
 import {ShoppingCartItem} from '../../../shared/models/shopping-cart-item';
 import {Product} from '../../../shared/models/product';
 
@@ -12,21 +12,27 @@ export class ShoppingCartComponent implements OnInit {
   items: Array<Product>;
 
   constructor(private shoppingCartService: ShoppingCartService) {
-    this.items = this.getShoppingCartItems();
+    this.setItems();
   }
 
   ngOnInit() {
   }
 
   clearCart() {
+    this.shoppingCartService.clearCart();
+    this.setItems();
+  }
+
+  setItems() {
+    this.items = this.getShoppingCartItems();
   }
 
   getShoppingCartItems(): Array<Product> {
-    const shoppingCartItems =  this.shoppingCartService.getShoppingCartItems();
-    const shoppingCartItemsArray: Array<Product> =  [];
+    const shoppingCartItems = this.shoppingCartService.getShoppingCartItems();
+    const shoppingCartItemsArray: Array<Product> = [];
 
-    for(let itemId in shoppingCartItems) {
-      shoppingCartItemsArray.push(new Product({_id: itemId, ...shoppingCartItems[itemId]}))
+    for (let itemId in shoppingCartItems) {
+      shoppingCartItemsArray.push(new Product({_id: itemId, ...shoppingCartItems[itemId]}));
     }
 
     return shoppingCartItemsArray;
