@@ -12,7 +12,7 @@
       <a class="nav-link" routerLink="/shopping-cart">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         <span class="badge badge-warning badge-pill">
-              2
+              {{this.getNumberOfItemsInCart()}}
             </span>
       </a>
       <li class="nav-item">
@@ -24,9 +24,10 @@
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-      <ul class="navbar-nav mr-auto" style=""  >
-        <li class="nav-item dropdown" >
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" style="padding-left: 100px"
+      <ul class="navbar-nav mr-auto" style="">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+             style="padding-left: 100px"
              aria-haspopup="true" aria-expanded="false">
             Dropdown
           </a>

@@ -23,7 +23,7 @@ export class ShoppingCart {
     return sum;
   }
 
-  get totalItemsCount() {
+  get numberOfItemsInCart() {
     let count = 0;
     for (let shoppingCartId in this.shoppingCart) {
       count += this.shoppingCart[shoppingCartId].quantity;

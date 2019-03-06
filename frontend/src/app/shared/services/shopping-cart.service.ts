@@ -27,4 +27,8 @@ export class ShoppingCartService {
     this.shoppingCart.clearCart();
   }
 
+  getNumberOfItemsInCart(): number {
+    return this.shoppingCart.numberOfItemsInCart;
+  }
+
 }
