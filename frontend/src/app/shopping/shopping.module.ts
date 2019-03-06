@@ -4,6 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import { SharedModule } from './../shared/shared.module';
 import { ProductsComponent } from './components/products/products.component';
+import { ProductCategoryComponent } from './components/products/product-category/product-category.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ProductsComponent } from './components/products/products.component';
   ],
   declarations: [
     ProductsComponent,
+    ProductCategoryComponent,
   ]
 })
 export class ShoppingModule { }
