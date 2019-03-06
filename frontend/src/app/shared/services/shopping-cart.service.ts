@@ -1,6 +1,7 @@
 import {ShoppingCart} from '../models/shopping-cart';
 import {Product} from '../models/product';
 import {Injectable} from '@angular/core';
+import {ShoppingCartItem} from '../models/shopping-cart-item';
 
 @Injectable()
 export class ShoppingCartService {
@@ -23,12 +24,20 @@ export class ShoppingCartService {
     this.shoppingCart.removeFromShoppingCart(product);
   }
 
-  clearCart() {
+  clearCart(): void {
     this.shoppingCart.clearCart();
   }
 
   getNumberOfItemsInCart(): number {
     return this.shoppingCart.numberOfItemsInCart;
+  }
+
+  getShoppingCartItems(): { [_id: string]: ShoppingCartItem } {
+    return this.shoppingCart.getShoppingCartItems();
+  }
+
+  getTotalPrice(): number {
+    return this.shoppingCart.totalPrice;
   }
 
 }
