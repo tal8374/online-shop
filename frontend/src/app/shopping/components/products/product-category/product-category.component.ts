@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {Category} from '../../../../shared/models/category';
 
 @Component({
   selector: 'product-category',
@@ -7,9 +8,9 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./product-category.component.css']
 })
 export class ProductCategoryComponent implements OnInit {
-  categories = [{_id: 1, name: 'vegetables'}, {_id: 2, name: 'bread'}];
-  @Input('currentCategory') currentCategory;
-  @Output() onCategoryChange: EventEmitter<any> = new EventEmitter();
+  categories:Array<Category> = [{_id: '1', name: 'vegetables'}, {_id: '2', name: 'bread'}];
+  @Input('currentCategory') currentCategory: Category;
+  @Output() onCategoryChange: EventEmitter<Category> = new EventEmitter();
 
   constructor(private activatedRoute: ActivatedRoute) {
     this.setCurrentCategory();
@@ -34,7 +35,7 @@ export class ProductCategoryComponent implements OnInit {
     });
   }
 
-  onChangeCategory(category) {
+  onChangeCategory(category: Category) {
     this.setCurrentCategory();
   }
 
