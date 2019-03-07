@@ -44,4 +44,8 @@ export class ShoppingCartService {
     return this.shoppingCart.getTotalPriceOfItem(product);
   }
 
+  getNumberOfOccurrenceOfProduct(product: Product): number {
+    return this.shoppingCart.getNumberOfOccurrenceOfProduct(product);
+  }
+
 }

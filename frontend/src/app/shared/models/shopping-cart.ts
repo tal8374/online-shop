@@ -76,4 +76,10 @@ export class ShoppingCart {
 
     return shoppingCartItem.quantity * shoppingCartItem.price;
   }
+
+  getNumberOfOccurrenceOfProduct(product: Product): number {
+    const shoppingCartItem: ShoppingCartItem = this.shoppingCart[product._id];
+
+    return shoppingCartItem.quantity;
+  }
 }

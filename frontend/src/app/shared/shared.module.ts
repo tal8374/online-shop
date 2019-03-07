@@ -5,7 +5,8 @@ import {NgModule} from '@angular/core';
 import {ProductCardComponent} from './components/product-card/product-card.component';
 import {ProductQuantityComponent} from './components/product-quantity/product-quantity.component';
 
-import { ShoppingCartService } from './services/shopping-cart.service';
+import {ShoppingCartService} from './services/shopping-cart.service';
+import {OrderService} from './services/order.service';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     FormsModule,
   ],
   providers: [
-    ShoppingCartService
+    ShoppingCartService,
+    OrderService,
   ]
 })
 export class SharedModule {
